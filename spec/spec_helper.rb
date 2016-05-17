@@ -6,3 +6,6 @@ begin
   require 'spec_helper_local'
 rescue LoadError
 end
+
+require 'rspec-puppet-facts'
+include RspecPuppetFacts
