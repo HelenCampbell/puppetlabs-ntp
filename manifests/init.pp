@@ -62,7 +62,7 @@ class ntp (
   if $stepout { validate_numeric($stepout, 65535, 0) }
 
   if $autoupdate {
-    notice('autoupdate parameter has been deprecated and replaced with package_ensure.  Set this to latest for the same behavior as autoupdate => true.')
+    notice('autoupdate parameter has been deprecated and replaced with package_ensure.  Set package_ensure to latest for the same behavior as autoupdate => true.')
   }
 
   # Anchor this as per #8040 - this ensures that classes won't float off and
