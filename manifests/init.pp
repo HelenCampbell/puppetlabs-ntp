@@ -7,7 +7,7 @@ class ntp (
   Boolean $autoupdate,
   $broadcastclient,
   Ntp::Is_absolute_path $config,
-  Optional[Any] $config_dir,
+  Optional[Ntp::Is_absolute_path] $config_dir,
   $config_file_mode,
   String $config_template,
   Boolean $disable_auth,
@@ -31,7 +31,7 @@ class ntp (
   Boolean $package_manage,
   Array[Any] $package_name,
   Optional[Variant[Integer[0, 65535], Ntp::Is_numeric_string]] $panic = $::ntp::params::panic,
-  $peers,
+  Optional[Any] $peers,
   Array[Any] $preferred_servers,
   Array[Any] $restrict,
   Array[Any] $interfaces,
@@ -42,15 +42,15 @@ class ntp (
   $service_manage,
   $service_name,
   Optional[Any] $service_provider,
-  $stepout,
+  Optional[Variant[Integer[0, 65535], Ntp::Is_numeric_string]] $stepout,
   Boolean $tinker = $::ntp::params::tinker,
   Boolean $tos,
   Optional[Ntp::Is_numeric] $tos_minclock,
-  $tos_minsane,
-  $tos_floor,
-  $tos_ceiling,
-  $tos_cohort,
-  $udlc,
+  Optional[Ntp::Is_numeric] $tos_minsane,
+  Optional[Ntp::Is_numeric] $tos_floor,
+  Optional[Ntp::Is_numeric] $tos_ceiling,
+  Optional[Variant[Integer[0, 1], Pattern['^[0|1]$']]] $tos_cohort,
+  Boolean $udlc,
   $udlc_stratum,
   Optional[Ntp::Is_absolute_path] $ntpsigndsocket,
   Optional[String] $authprov,
@@ -60,19 +60,6 @@ class ntp (
   if $maxpoll { validate_numeric($maxpoll, 16, 3) }
   if $panic { validate_numeric($panic, 65535, 0) }
   if $stepout { validate_numeric($stepout, 65535, 0) }
-
-  if $tos_minclock { validate_numeric($tos_minclock) }
-  if $tos_minsane { validate_numeric($tos_minsane) }
-  if $tos_floor { validate_numeric($tos_floor) }
-  if $tos_ceiling { validate_numeric($tos_ceiling) }
-  if $tos_cohort { validate_re($tos_cohort, '^[0|1]$', "Must be 0 or 1, got: ${tos_cohort}") }
-  validate_bool($udlc)
-  validate_array($peers)
-  if $authprov { validate_string($authprov) }
-
-  if $config_dir {
-    validate_absolute_path($config_dir)
-  }
 
   if $autoupdate {
     notice('autoupdate parameter has been deprecated and replaced with package_ensure.  Set this to latest for the same behavior as autoupdate => true.')
