@@ -42,7 +42,7 @@ class ntp (
   $service_manage,
   $service_name,
   Optional[Any] $service_provider = undef,
-  $stepout = undef,
+  String $stepout,
   Boolean $tinker = $::ntp::params::tinker,
   Boolean $tos,
   Optional[Ntp::Is_numeric] $tos_minclock,

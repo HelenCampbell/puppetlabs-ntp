@@ -33,6 +33,7 @@ ntp::service_enable: true
 ntp::service_ensure: running
 ntp::service_manage: true
 ntp::service_name: ntpd
+ntp::stepout: ~
 ntp::tos_ceiling: '15'
 ntp::tos_cohort: '0'
 ntp::tos_floor: '1'
