@@ -1,5 +1,7 @@
 # these should go to stdlib
-type Ntp::Is_absolute_path = Variant[Tea::Absolutepath_compat, Array[Tea::Absolutepath_compat]]
+type Ntp::Windowspath = Pattern[/^(([a-zA-Z]:[\\\/])|([\\\/][\\\/][^\\\/]+[\\\/][^\\\/]+)|([\\\/][\\\/]\?[\\\/][^\\\/]+))/]
+type Ntp::Absolutepath_compat = Variant[Ntp::Windowspath, Pattern[/^\//]]
+type Ntp::Is_absolute_path = Variant[Ntp::Absolutepath_compat, Array[Ntp::Absolutepath_compat]]
 type Ntp::Is_numeric_string = Pattern[/^-?(?:(?:[1-9]\d*)|0)(?:\.\d+)?(?:[eE]-?\d+)?$/]
 type Ntp::Is_numeric = Variant[Numeric, Ntp::Is_numeric_string]
 
