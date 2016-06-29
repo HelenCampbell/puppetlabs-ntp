@@ -9,6 +9,7 @@
   "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0 < 5.0.0"}
+    {"name":"puppet/tea","version_requirement":"= 0.2.1"}
   ],
   "data_provider": "hiera",
   "operatingsystem_support": [
